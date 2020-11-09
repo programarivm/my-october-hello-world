@@ -1,8 +1,12 @@
-## My October
+## My October -- Hello World
 
-Creates a basic OctoberCMS app -- the OctoberCMS demo -- using PHP 7.4 and Nginx 1.18.
+Creates a basic OctoberCMS app -- the OctoberCMS demo -- using PHP 7.4, Nginx 1.18 and MySQL 8.0.
 
 ## How-to Guide
+
+Create an .env file:
+
+    $ cp .env.example .env
 
 Build the Docker containers:
 
@@ -25,8 +29,20 @@ Make sure to set up permissions properly:
     $ sudo chmod 775 -R storage
     $ sudo chown -R standard:www-data storage    
 
+Find out the IP of your `myoctober_mysql` container and update your `.env` file accordingly:
+
+    $ echo $(docker inspect -f '{{range .NetworkSettings.Networks}}{{.Gateway}}{{end}}' myoctober_mysql)
+
+Install and set up October:
+
+    sudo docker exec -it myoctober_php_fpm php artisan october:install
+
+Create the database:
+
+    sudo docker exec -it myoctober_php_fpm php artisan october:up
+
 Finally, find out the IP of your `myoctober_nginx` container:
 
     $ echo $(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' myoctober_nginx)
 
-Congrats! With the IP at hand browse your new site -- e.g. `http://172.23.0.3`.
+Congrats! With the IP at hand browse your new site -- e.g. http://172.23.0.3 -- and log in the admin panel.
