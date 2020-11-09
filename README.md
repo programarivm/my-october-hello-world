@@ -4,7 +4,7 @@ Creates a basic OctoberCMS app -- the OctoberCMS demo -- using PHP 7.4, Nginx 1.
 
 ## How-to Guide
 
-Create an .env file:
+Create an `.env` file:
 
     $ cp .env.example .env
 
@@ -12,7 +12,7 @@ Build the Docker containers:
 
     $ docker-compose up --build
 
-Create a new OctoberCMS project as a non-root user:
+Create a new project as a non-root user:
 
     $ docker exec -itu 1000:1000 myoctober_php_fpm composer create-project october/october myoctober
 
@@ -36,10 +36,6 @@ Find out the IP of your `myoctober_mysql` container and update your `.env` file 
 Install and set up October:
 
     sudo docker exec -it myoctober_php_fpm php artisan october:install
-
-Create the database:
-
-    sudo docker exec -it myoctober_php_fpm php artisan october:up
 
 Finally, find out the IP of your `myoctober_nginx` container:
 
