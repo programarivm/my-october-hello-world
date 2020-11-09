@@ -25,6 +25,22 @@ services:
             - ./:/usr/share/nginx/myoctober
             - ./docker/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
 
+  mysql:
+      image: mysql:8.0
+      container_name: myoctober_mysql
+      restart: always
+      working_dir: /usr/local/myoctober
+      volumes:
+          - ./:/usr/local/myoctober
+          - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
+      ports:
+          - "3306:3306"
+      environment:
+          - MYSQL_DATABASE=${DB_DATABASE}
+          - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+          - MYSQL_USER=${DB_USERNAME}
+          - MYSQL_PASSWORD=${DB_PASSWORD}
+
 networks:
   myoctober:
     driver: bridge
