@@ -26,8 +26,8 @@ Remove the remaining empty folder:
 
 Make sure to set up permissions properly:
 
-    $ sudo chmod 775 -R storage
-    $ sudo chown -R standard:www-data storage    
+    $ sudo chmod 775 -R plugins storage
+    $ sudo chown -R standard:www-data plugins storage
 
 Find out the IP of your `myoctober_mysql` container and update your `.env` file accordingly:
 
